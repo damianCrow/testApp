@@ -6,6 +6,7 @@ window.addEventListener('load', function() {
   var playerImage = document.getElementById('playerImage');
   var teamBadge = document.getElementById('teamBadge');
   var playerStatsWrapper = document.getElementById('playerStats');
+  var nameAndPosition = document.getElementById('nameAndPosition');
 
   var playersArray;
   var getPlayersDataJson = new XMLHttpRequest();
@@ -19,7 +20,7 @@ window.addEventListener('load', function() {
       for(var i = 0; i < playersArray.length; i++) {
         
         var listElement = new domEle('li', ['list_item'], playersList);
-        listElement.apendElementContent(playersArray[i].player.name.first + ' ' + playersArray[i].player.name.last);
+        listElement.appendElementContent(playersArray[i].player.name.first + ' ' + playersArray[i].player.name.last);
         listElement.setAtrib('value', i);
 
         listElement.listenForEvent('click', function() {
@@ -54,7 +55,7 @@ window.addEventListener('load', function() {
 
       ele.setAttribute(atribute, atributeValue);
     }
-    this.apendElementContent = function(content) {
+    this.appendElementContent = function(content) {
 
       ele.innerHTML = content;
     }
@@ -81,15 +82,16 @@ window.addEventListener('load', function() {
 
   function updatePlayerInfo(playerIndex) {
 
-    playerStatsWrapper.innerHTML = ''; 
+    playerStatsWrapper.innerHTML = '';
+    nameAndPosition.innerHTML = '';
 
     var player = playersArray[playerIndex].player;
     var playerInfoStatsArray = [];
-    var badgeSpritePosition;
+    var badgeSpritePosition, playerName, position;
 
     var goalsPerMatch = playersArray[playerIndex].stats[0].value / (playersArray[playerIndex].stats[1].value + playersArray[playerIndex].stats[2].value + playersArray[playerIndex].stats[3].value);
     var PassesPerMinute = (playersArray[playerIndex].stats[4].value + playersArray[playerIndex].stats[8].value) / playersArray[playerIndex].stats[7].value;
-   
+  
     playerInfoStatsArray.push(
       {'Appearances': playersArray[playerIndex].stats[6].value},
       {'Goals': playersArray[playerIndex].stats[0].value},
@@ -97,6 +99,24 @@ window.addEventListener('load', function() {
       {'Goals per match': goalsPerMatch.toFixed(2)},
       {'Passes per minute': PassesPerMinute.toFixed(2)}
     );
+
+    switch(player.info.position) {
+
+      case "M":
+
+       position = 'Midfielder';
+      break;
+
+      case "D":
+
+       position = 'Defender';
+      break;
+
+      case "F":
+
+       position = 'Striker';
+      break;
+    }
 
     switch(player.currentTeam.id) {
 
@@ -129,6 +149,14 @@ window.addEventListener('load', function() {
     playerImage.style.backgroundImage = 'url(images/player_images/p' + player.id + '.png)';
 
     teamBadge.style.backgroundPosition = badgeSpritePosition;
+
+    var playerName = new domEle('p', ['primary_info'], nameAndPosition);
+    playerName.appendElementContent(player.name.first + ' ' + player.name.last);
+    playerName.appendEleToParent();
+
+    var playerPosition = new domEle('p', ['primary_info'], nameAndPosition);
+    playerPosition.appendElementContent(position);
+    playerPosition.appendEleToParent();
 
     playerInfoStatsArray.forEach(function(item) {
 
