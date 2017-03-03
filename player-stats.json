@@ -239,6 +239,10 @@
           "value": 4257
         },
         {
+          "name": "goal_assist",
+          "value": 0
+        },
+        {
           "name": "appearances",
           "value": 187
         },

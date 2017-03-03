@@ -7,13 +7,16 @@
 	<body id="mainWrapper">
 
 		<div id="playerInfo">
-			<div class="player_selector">
+
+			<div id="playerSelector1" class="player_selector" onclick="showHideList(this)">
 				<span id="playerSelectorText" class="player_selector_placeholder">Select a player...</span>
-				<span class="chevron_down"></span>
+				<span class="chevron"></span>
 				<ul id="playersList" class="player_list"></ul>
 			</div>
-			<div class="player_image"></div>
-			<div class="team_badge"></div>
+
+			<div id="playerImage" class="player_image"></div>
+			<div id="teamBadge" class="team_badge"></div>
+			<div id="playerStats" class="player_stats_wrapper"></div>
 		</div>
 
 		<script type="text/javascript" src="app.js"></script>
