@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
 		<title>test App</title>
 		<link rel="stylesheet" type="text/css" href="css/styles.min.css">
 	</head>
 	<body id="mainWrapper">
 
-		<div id="playerInfo">
+		<div id="playerInfo"> <!-- THE ENTIRE CARD PARENT -->
 
-			<div id="playerSelector1" class="player_selector" onclick="showHideList(this)">
+			<div id="playerSelector1" class="player_selector" onclick="showHideList(this)"> <!-- THE PLAYERS LIST PARENT -->
 				<span id="playerSelectorText" class="player_selector_placeholder">Select a player...</span>
 				<span class="chevron"></span>
-				<ul id="playersList" class="player_list"></ul>
+				<ul id="playersList" class="player_list"></ul> 
 			</div>
 
 			<div id="playerImage" class="player_image"></div>
 			<div id="teamBadge" class="team_badge"></div>
 			<div id="nameAndPosition" class="primary_info_wrapper"></div>
-			<div id="playerStats" class="player_stats_wrapper"></div>
+			<div id="playerStats" class="player_stats_wrapper"></div> <!-- THE CARD STATS PARENT -->
 		</div>
 
-		<script type="text/javascript" src="app.js"></script>
+		<script type="text/javascript" src="js/script.min.js"></script>
 	</body>
 </html>

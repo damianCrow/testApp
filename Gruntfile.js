@@ -3,6 +3,8 @@ module.exports = function(grunt) {
     "use strict";
 
     grunt.loadNpmTasks("grunt-contrib-sass");
+    grunt.loadNpmTasks("grunt-contrib-uglify");
+    grunt.loadNpmTasks("grunt-contrib-connect");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks('grunt-autoprefixer');
 
@@ -21,33 +23,60 @@ module.exports = function(grunt) {
             }
         },
 
-        autoprefixer: {
-        options: {
+        uglify: {
 
-          browsers: ['last 2 versions', 'ie 9']
+            dev: {
+                options: {
+                    compress: {},
+                    mangle: true,
+                    preserveComments: false
+                },
+
+                files: {
+                    "js/script.min.js" : ["app.js"]
+                }
+            }
         },
-        dist: { 
-          files: {
-            'css/styles.min.css': 'css/styles.min.css'
+
+        connect: {
+
+            server : {
+                options: {
+                    open: {
+                        target: 'http://localhost:8000/'
+                    }
+                }
+            }
+        },
+
+        autoprefixer: {
+          options: {
+
+            browsers: ['last 3 versions', 'ie 9']
+          },
+          dist: { 
+            files: {
+              'css/styles.min.css': 'css/styles.min.css'
+            }
           }
-        }
-      },
+        },
 
         watch: {
+            options:{
+                livereload: true
+            },
 
-          scss: {
+            js: {
+                files: ["*.js"],
+                tasks: ["uglify:dev"]
+            },
 
-            files: ["*.scss"],
-            tasks: ["sass:dev"]
-          },
-
-          css: {
-
-            files: ["css/*.css"],
-            tasks: ["autoprefixer"]
-          }
+            scss: {
+                files: ["*.scss"],
+                tasks: ["sass:dev", "autoprefixer"]
+            }
         }
     });
 
-    grunt.registerTask("run", ["watch", "autoprefixer"]);
+    grunt.registerTask("run", ["sass:dev", "uglify:dev", "connect:server", "autoprefixer", "watch"]);
 };
