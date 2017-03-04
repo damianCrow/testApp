@@ -2,14 +2,20 @@
 player info card for premier league players.
 
 #// To setup environment. \\
-Download and install node here: https://nodejs.org/en/
-run: npm install -g grunt-cli
-clone the repo and navigate to the folder in the command line.
-
+Download and install node here: https://nodejs.org/en/ .
+```shell
+npm install -g grunt-cli
+```
+#// To clone repo. \\
+```shell
+git clone https://github.com/damianCrow/testApp.git
+```
 #// To install required dependancies. \\
-run: npm install 
-
+```shell
+npm install
+```
 #// To set up project tasks and start server. \\
-run: grunt run
-
+```shell
+grunt run
+```
 #// Thats it! you are done :-)\\
