@@ -179,16 +179,13 @@ window.addEventListener('load', function() {
 // FUNCTION GETS CALLED ON DROPDOWN MENU CLICK.\\
 function showHideList(ele) {
 
-  if(ele.children[0].classList.contains('list_open')) {
+  for(var e = 0; e < ele.children.length; e++) {
 
-    for(var e = 0; e < ele.children.length; e++) {
+    if(ele.children[e].classList.contains('list_open')) {
 
-      ele.children[e].classList.remove('list_open');
+       ele.children[e].classList.remove('list_open');
     }
-  }
-  else {
-
-    for(var e = 0; e < ele.children.length; e++) {
+    else {
 
       ele.children[e].classList.add('list_open');
     }
