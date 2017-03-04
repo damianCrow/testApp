@@ -2,7 +2,7 @@
 player info card for premier league players.
 
 #// To setup environment. \\
-Download and install node here: https://nodejs.org/en/ .
+Download and install node here: https://nodejs.org/en/
 ```shell
 npm install -g grunt-cli
 ```
