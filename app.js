@@ -17,8 +17,10 @@ window.addEventListener('load', function() {
   getPlayersDataJson.onreadystatechange = function() {
 
     if(this.readyState === 4 && this.status === 200) {
-// LOOP THROUGH JSON AND POPULATE THE PLAYER SELECT DROPDOWN. \\
-      playersArray = JSON.parse(this.responseText).players;
+// LOOP THROUGH JSON AND POPULATE THE PLAYER SELECT DROPDOWN. SORT PLAYER LAST NAMES ALPHABETICALLY \\
+      playersArray = JSON.parse(this.responseText).players.sort(function(a, b) {
+        return(a.player.name.last > b.player.name.last);
+      });
       
       for(var i = 0; i < playersArray.length; i++) {
         
